@@ -1,0 +1,16 @@
+{
+  "name": "grafana-email-report",
+  "version": "1.0.0",
+  "description": "Email Grafana/Influx based reports ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "nodemailer": "^6.4.6"
+  },
+  "engines" : { "node" : ">=12.0" }
+}

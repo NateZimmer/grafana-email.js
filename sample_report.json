@@ -1,0 +1,35 @@
+{
+    "server_url": "https://play.grafana.org", 
+    "dashboard_name": "grafana-play-home",
+    "dashboard_id": "000000012",
+    "email_subject": "Grafana report email", 
+    "title": "Grafana report email",
+    "intro_text":"This is a demo of grafana-email.js",
+    "footer_text": "This was a very neat email. Goodbye",
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 465,
+    "smtp_user": "yourSMTP@gmail.com",
+    "smtp_password": "[your password]",
+    "sender_contact": "Your Name [Your contact email]",
+    "_test_email":"your@gmail.com",
+    "grafana_api_token": "",
+    "email_list":["your@gmail.com","your2@gmail.com"],
+    "time_start": "now-2h",
+    "time_end": "now",
+    "panel_list": [
+        {
+            "id":2,
+            "desc": "This is a plot of servers",
+            "height": 600,
+            "width": 1000
+        },
+        {
+            "id": 4,
+            "desc": "This is a memory plot" 
+        },
+        {
+            "id":3,
+            "desc":"Login information"
+        }
+    ]
+}
