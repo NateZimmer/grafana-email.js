@@ -118,7 +118,8 @@ function get_req_url(panel_obj){
   req_url += 'to=' + ( json_settings.time_end ? json_settings.time_end :_time_range_end)  + '&';
   req_url += 'panelId=' + panel_obj.id + '&';
   req_url += 'width=' + (panel_obj.width ? panel_obj.width : _width) + '&';
-  req_url += 'height=' + (panel_obj.height ? panel_obj.height : _height); 
+  req_url += 'height=' + (panel_obj.height ? panel_obj.height : _height);
+  req_url += panel_obj.query ? panel_obj.query : ''; 
   return req_url;
 }
 
@@ -140,13 +141,16 @@ async function generate_report(){
   email_body += '<b>Date:</b> ' + Date(Date.now()) + '<br><br>\r\n\r\n';
   email_body += `${json_settings.intro_text}<br>\r\n`;
   var date_now = Date.now();
+  var panel_count = 0;
   for(var panel of json_settings.panel_list){
     var req_url = get_req_url(panel);
+    panel_count++;
     await sleep(1000);
     for(var i = 0; i < retry_limit; i++){
       console.log(`Downloading image id: ${panel.id} via url: ${req_url}`);
       var image_content = await get_base64_image(req_url,json_settings.grafana_api_token);
-      if(image_content.length > min_image_size){
+      var size_check_val = panel.min_size ? panel.min_size :min_image_size ; 
+      if(image_content.length > size_check_val){
         console.log(`Download finished. Size: ${image_content.length}`);
         break;
       }else{
@@ -155,7 +159,7 @@ async function generate_report(){
       await sleep(1000);
     }
     
-    var image_id = 'image_' + panel.id + '_' + date_now;
+    var image_id = 'image_' + panel.id + '_' + date_now + '_' + panel_count;
     var att_obj = {};
     att_obj.filename = image_id + '.png';
     att_obj.encoding = 'base64';
@@ -179,7 +183,7 @@ async function generate_report(){
     });
 
     console.log("Message sent: %s", info.messageId);
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < 100; i++){
       console.log('Do you wish to send this email to ' + json_settings.email_list);
       console.log('yes,no?');
       var res = await getLine();

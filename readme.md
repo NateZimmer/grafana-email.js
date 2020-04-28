@@ -109,7 +109,9 @@ The `panel_list` is an array of objects. See below for details
 | `height` | no | rendered pixel height of panel | 
 | `width` | no | rendered pixel width of panel |
 | `dashboard_name` | no | allows you to provide an alternate dashboard to pull panel from | 
-| `dashboard_id` | no | allows you to provide an alternate dashboard to pull panel from | 
+| `dashboard_id` | no | allows you to provide an alternate dashboard to pull panel from |
+| `min_size` | no | deals with grafana bug of image failing to render, can specify a custom size the image must be greater than
+| `query` | no | can specify additional query parameters to be added to image download. This allows manipulate dashboard variables. E.g. `&var-my_variable_1=50&var-my_variable_2=100`. 
 
 ## Support
 
