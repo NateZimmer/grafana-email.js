@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^1.8.2",
     "nodemailer": "^6.4.6"
   },
   "engines" : { "node" : ">=12.0" }
